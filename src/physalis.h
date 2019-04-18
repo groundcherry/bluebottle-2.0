@@ -37,7 +37,7 @@
  *  DIV_ST
  * USAGE
  */
-#define DIV_ST 1e-10
+#define DIV_ST -1e-10
 /* FUNCTION
  *  Define a value to use for fudging the value of theta when a division by
  *  sin(theta) occurs

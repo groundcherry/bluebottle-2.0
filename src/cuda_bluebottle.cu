@@ -432,6 +432,14 @@ void cuda_dom_malloc_dev(void)
 }
 
 extern "C"
+void cuda_update_bc(void)
+{
+    printf("\nupdate bc\n");
+    update_vel_BC<<<1, 1>>>(_bc, v_bc_tdelay, ttime);
+
+}
+
+extern "C"
 void cuda_dom_push(void)
 {
   // Push initialized domain data from host to device
@@ -1618,6 +1626,7 @@ void cuda_compute_forcing(void)
       }
     }
   }
+  gradP.z = gradP.z * cos(osci_f*ttime);
 
   // linearly accelerate gravitational acceleration from zero
   delta = ttime - g_bc_tdelay;

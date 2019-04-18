@@ -365,6 +365,7 @@ int lamb_max_iter;
 real lamb_residual;
 real lamb_relax;
 real lamb_cut;
+real osci_f;
 
 int init_cond;
 int out_plane;

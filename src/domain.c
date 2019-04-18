@@ -778,6 +778,7 @@ void domain_read_input(void)
 
   fret = fscanf(infile, "TURBULENT FORCING PARAMETERS\n");
   fret = fscanf(infile, "turbA %lf\n", &turbA);
+  fret = fscanf(infile, "osci_f %lf\n", &osci_f);
 
   fclose(infile);
 
@@ -1843,6 +1844,7 @@ void compute_vel_BC()
     } else {
       bc.uTD = delta*bc.uTDa;
     }
+    printf("bcUTD %f\n", bc.uTD);
     // vWD
     if (bc.vWDa == 0) {
       bc.vWD = bc.vWDm;
@@ -1940,6 +1942,7 @@ void compute_vel_BC()
       bc.wTD = delta*bc.wTDa;
     }
   }
+  cuda_update_bc();
 }
 
 void domain_init_fields() 
