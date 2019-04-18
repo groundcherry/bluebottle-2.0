@@ -3286,12 +3286,13 @@ __global__ void collision_parts(part_struct *parts, int nparts,
                     real Vx = -utx + 0.5*(ai + aj + h)*ocrossnx;
                     real Vy = -uty + 0.5*(ai + aj + h)*ocrossny;
                     real Vz = -utz + 0.5*(ai + aj + h)*ocrossnz;
-                    real Vdotn =  Vx * nx + Vy * ny + Vz * nz;
 
                     real Hi = 0.5*parts[i].E/(1.+parts[i].sigma);
                     real kt = 8./((1.-parts[i].sigma*parts[i].sigma)/Hi
                       +(1.-parts[i].sigma*parts[i].sigma)/Hi)/sqrt(1./ai)
                       *sqrt(-h);
+
+                    real Vdotn = Vx*nx + Vy*ny + Vz*nz;
 
                     real sx = (Vx - Vdotn * nx) * dt;
                     real sy = (Vy - Vdotn * ny) * dt;
@@ -3322,7 +3323,7 @@ __global__ void collision_parts(part_struct *parts, int nparts,
                     Ftx = -kt * sx;
                     Fty = -kt * sy;
                     Ftz = -kt * sz;
-                    real Ftdotn = Ftx * nx + Fty * ny + Ftz * nz;
+                    real Ftdotn = Ftx*nx + Fty*ny + Ftz*nz;
                     Ftx = Ftx - Ftdotn * nx;
                     Fty = Fty - Ftdotn * ny;
                     Ftz = Ftz - Ftdotn * nz;
