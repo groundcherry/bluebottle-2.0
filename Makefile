@@ -22,11 +22,11 @@
 ################################################################################
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EDIT: DEPENDENCIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-MPI_DIR = /opt/openmpi-2.1.1
-HDF5_DIR = /opt/phdf5/1.8.19
-CGNS_DIR = /opt/pcgns/3.3.0
-CUDA_DIR = /opt/cuda
-CUDA_SDK_DIR = /opt/cuda-7.5/samples
+MPI_DIR = /project/cacds/apps/openmpi/3.1.2/gcc-cuda
+HDF5_DIR = /home/yzhang20/deps/hdf5-1.8.21
+CGNS_DIR = /home/yzhang20/deps/cgns-3.3.1
+CUDA_DIR = /project/cacds/apps/easybuild/software/CUDA/9.2.88
+CUDA_SDK_DIR = /project/cacds/apps/easybuild/software/CUDA/9.2.88/samples
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EDIT: COMPILERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -75,7 +75,8 @@ SRCC =	bluebottle.c	\
 	particle.c	\
 	recorder.c	\
 	rng.c		\
-	vtk.c
+	vtk.c		\
+	scalar.c
 
 SRCCUDA = cuda_bluebottle.cu	\
 	cuda_solver.cu		\
@@ -85,7 +86,9 @@ SRCCUDA = cuda_bluebottle.cu	\
 	solver_kernel.cu	\
 	particle_kernel.cu	\
 	physalis_kernel.cu	\
-	cuda_testing.cu
+	cuda_testing.cu		\
+	cuda_scalar.cu		\
+	scalar_kernel.cu
 
 
 EXTRA = Makefile	\
@@ -102,7 +105,9 @@ EXTRA = Makefile	\
 	rng.h		\
 	vtk.h		\
 	bluebottle.cuh	\
-	cuda_testing.h
+	cuda_testing.h	\
+	scalar.h		\
+	cuda_scalar.h
 
 ifeq ($(CGNS_OUTPUT),TRUE)
 	SRCC += cgns.c
